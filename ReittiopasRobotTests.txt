@@ -1,0 +1,26 @@
+*** Settings ***
+Library   Selenium2Library
+Suite Setup   Go to reittiopas
+Suite Teardown   Close All Browsers
+
+*** Variables ***
+${STARTPAGE}   http://www.reittiopas.fi
+${BROWSER}     firefox
+
+*** Test Cases ***
+Find route from Alaportti 4 to Iso Omena at 12:00
+   Find route from-to and check results   Alaportti 4   Iso Omena   12   00   533
+
+*** Keywords ****
+Find route from-to and check results 
+   [Arguments]   ${from}   ${to}   ${hour}   ${minute}   ${result}
+   Input Text      id=from_in   ${from}
+   Input Text      id=to_in   ${to}
+   Input Text      id=hour   ${hour}
+   Input Text      name=minute   ${minute}
+   Click Element   id=SearchFormSubmitButton
+   Wait Until Page Contains Element   id=resultSummary_inner
+   
+
+Go to reittiopas
+   Open Browser   ${STARTPAGE}   ${BROWSER}
