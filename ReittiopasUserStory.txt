@@ -1,0 +1,17 @@
+**** Martta Matkustaja ****
+Martta haluaa reitin kodista kauppaan.
+
+**** Outi Opiskelija ****
+Outi tarvitsee reitin kouluun ruuhka-aikaan ja koulusta kotiin ei ruuhka-aikaan.
+
+**** Pete Polkupyörä ****
+Pete tarvitsee reitin polkupyörällä kodista töihin.
+
+**** Jani Juna ****
+Jani haluaa reitin vain junalla kaverilta kotiin sunnuntaina.
+
+**** Sami Shoppaaja ****
+Seija kulkee julkisilla työpaikalta ostoskeskuksen ja sitä kautta kotiin.
+
+
+
