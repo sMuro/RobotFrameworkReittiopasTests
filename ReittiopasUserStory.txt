@@ -1,17 +1,14 @@
 **** Martta Matkustaja ****
-Martta haluaa reitin kodista kauppaan.
+Matkustajana haluan tietää, millä julkisilla liikennevälineillä pääsen kauppaan.
 
 **** Outi Opiskelija ****
-Outi tarvitsee reitin kouluun ruuhka-aikaan ja koulusta kotiin ei ruuhka-aikaan.
+Opiskelijana tarvitsen reitin kouluun ruuhka-aikaan ja ei ruuhka-aikaan.
 
 **** Pete Polkupyörä ****
-Pete tarvitsee reitin polkupyörällä kodista töihin.
+Polkupyöräilijänä tarvitsen reitin polkupyörällä kodista töihin.
 
 **** Jani Juna ****
-Jani haluaa reitin vain junalla kaverilta kotiin sunnuntaina.
+Matkustajana haluan määrittää, millä julkisella liikennevälineellä matkustan.
 
-**** Sami Shoppaaja ****
-Seija kulkee julkisilla työpaikalta ostoskeskuksen ja sitä kautta kotiin.
-
-
-
+**** Vili Vaativa ****
+Vaativana matkaajana haluan mahdollisuuden pysähtyä matkan varrella, jotta voin käydä kaupassa, ja jatkaa matkaa.
