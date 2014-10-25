@@ -30,6 +30,10 @@
 
 References:
 
+Robot framework:
+http://robotframework-seleniumlibrary.googlecode.com/hg/doc/SeleniumLibrary.html?r=2.4  
+http://eficode.fi/en/blog/maintainable-automatic-tests-for-your-web-application/  
+
 Installation:  
 https://github.com/robotframework/robotframework/blob/master/INSTALL.rst  
 https://github.com/rtomac/robotframework-selenium2library/blob/master/INSTALL.rst  
