@@ -1,26 +1,43 @@
 *** Settings ***
 Library   Selenium2Library
-Suite Setup   Go to reittiopas
+Library   String
+
+Suite Setup   Open Browser   ${STARTPAGE}   ${BROWSER}
+Test Setup    Go to   ${STARTPAGE}
 Suite Teardown   Close All Browsers
+Documentation    Testing Reittiopas.fi 
 
 *** Variables ***
 ${STARTPAGE}   http://www.reittiopas.fi
 ${BROWSER}     firefox
 
 *** Test Cases ***
-Find route from Alaportti 4 to Iso Omena at 12:00
-   Find route from-to and check results   Alaportti 4   Iso Omena   12   00   533
-
-*** Keywords ****
-Find route from-to and check results 
-   [Arguments]   ${from}   ${to}   ${hour}   ${minute}   ${result}
-   Input Text      id=from_in   ${from}
-   Input Text      id=to_in   ${to}
-   Input Text      id=hour   ${hour}
-   Input Text      name=minute   ${minute}
-   Click Element   id=SearchFormSubmitButton
-   Wait Until Page Contains Element   id=resultSummary_inner
+Set route from Alaportti 4 to Iso Omena at 12:00 and find eligible route
+   Set route from-to   Alaportti 4   Iso Omena
+   Set clock   12:00
+   Submit form and wait results
+   Check that first suggested route contains   Alaportti 4, Espoo
+   Check that first suggested route contains   Bussi 533
+   Check that first suggested route contains   Iso Omena, Espoo
    
 
-Go to reittiopas
-   Open Browser   ${STARTPAGE}   ${BROWSER}
+*** Keywords ****
+Set route from-to
+   [Arguments]   ${from}   ${to}
+   Input Text   id=from_in   ${from}
+   Input Text   id=to_in     ${to}
+   
+Set clock
+   [Arguments]   ${time}
+   ${hour} =   Fetch From Left   ${time}   :
+   ${minute} =   Fetch From Right   ${time}   :
+   Input Text      id=hour   ${hour}
+   Input Text      name=minute   ${minute}
+   
+Submit form and wait results
+   Click Element   id=SearchFormSubmitButton
+   Wait Until Page Contains Element   id=ResultDetails
+   
+Check that first suggested route contains
+   [Arguments]   ${result}
+   Element Should Contain   id=ResultDetails1   ${result}
