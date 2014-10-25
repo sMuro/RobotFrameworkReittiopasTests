@@ -10,11 +10,11 @@
 	 *	Download ez_setup.py from: https://bootstrap.pypa.io/ez_setup.py
 	 *	Move ez_setup.py to Python27 folder (e.g. ;C:\Python27) and run it
  *	Install robotframework and selenium2library.
-	 *	Open cmd and run to:
-			easy_install robotframework-selenium2library
-		 	easy_install robotframework
-		 	easy_install selenium
-		 	easy_install decorator
+	 *	Open cmd and run to:  
+			easy_install robotframework-selenium2library  
+		 	easy_install robotframework  
+		 	easy_install selenium  
+		 	easy_install decorator  
 		 	easy_install docutils
  *	Verify Installation
 	 *	Start python (C:\> python)
@@ -23,7 +23,7 @@
 		 
 ### Run Robot Framework Tests ###
 
- *	Open cmd and execute your tests:
+ *	Open cmd and execute your tests:  
 		python -m robot.run <filename>
    
 
