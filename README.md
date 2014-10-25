@@ -31,8 +31,8 @@
 References:
 
 Installation:  
-https://github.com/robotframework/robotframework/blob/master/INSTALL.rst
-https://github.com/rtomac/robotframework-selenium2library/blob/master/INSTALL.rst
+https://github.com/robotframework/robotframework/blob/master/INSTALL.rst  
+https://github.com/rtomac/robotframework-selenium2library/blob/master/INSTALL.rst  
 
 User Story:  
-http://www.mountaingoatsoftware.com/blog/non-functional-requirements-as-user-stories
+http://www.mountaingoatsoftware.com/blog/non-functional-requirements-as-user-stories  
