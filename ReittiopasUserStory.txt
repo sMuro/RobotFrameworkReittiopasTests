@@ -1,14 +1,14 @@
-**** Martta Matkustaja ****
-Matkustajana haluan tietää, millä julkisilla liikennevälineillä pääsen kauppaan.
+ï»¿**** Martta Matkustaja ****
+Matkustajana haluan tietÃ¤Ã¤, millÃ¤ julkisilla liikennevÃ¤lineillÃ¤ pÃ¤Ã¤sen kauppaan.
 
 **** Outi Opiskelija ****
 Opiskelijana tarvitsen reitin kouluun ruuhka-aikaan ja hiljaiseen aikaan.
 
-**** Pete Polkupyörä ****
-Polkupyöräilijänä tarvitsen reitin polkupyörällä kodista töihin.
+**** Pete PolkupyÃ¶rÃ¤ ****
+PolkupyÃ¶rÃ¤ilijÃ¤nÃ¤ tarvitsen reitin polkupyÃ¶rÃ¤llÃ¤ kodista tÃ¶ihin.
 
 **** Jani Juna ****
-Matkustajana haluan määrittää, millä julkisella liikennevälineellä matkustan.
+Matkustajana haluan mÃ¤Ã¤rittÃ¤Ã¤, millÃ¤ julkisella liikennevÃ¤lineellÃ¤ matkustan.
 
 **** Vili Vaativa ****
-Vaativana matkaajana haluan mahdollisuuden pysähtyä matkan varrella, jotta voin käydä kaupassa, ja jatkaa matkaa.
+Vaativana kÃ¤yttÃ¤jÃ¤nÃ¤ haluan mahdollisuuden pysÃ¤htyÃ¤ matkan varrella, jotta voin kÃ¤ydÃ¤ kaupassa, ja jatkaa matkaa.
