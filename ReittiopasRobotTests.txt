@@ -15,9 +15,11 @@ ${BICYCLEBUTTON}   cyclingTripplannerButton
 ${DEPARTURE RADIOBUTTON}   time_method1
 ${ARRIVAL RADIOBUTTON}   time_method2
 ${TRANSPORTATION XPATH}   /html/body/div[1]/div[2]/div/div/div[2]/div[1]/div[1]/table/tbody/tr[7]/td[3]/div/table/tbody/tr/td[2]/a
+${SECOND TRANSPORTATION XPATH}   /html/body/div[1]/div[2]/div/div/div[2]/div[1]/div[1]/table/tbody/tr[13]/td[3]/div/table/tbody/tr/td[2]/a
 
 *** Test Cases ***
 Set route from Alaportti 4 to Iso Omena at 12:00 and find eligible route
+   [Tags]   Alaportti   Iso Omena
    Set route from-to   Alaportti 4   Iso Omena
    Set clock   12:00
    Submit form and wait results   ${GETROUTEBUTTON}
@@ -25,23 +27,25 @@ Set route from Alaportti 4 to Iso Omena at 12:00 and find eligible route
    Check correct transportation line   ${TRANSPORTATION XPATH}   Bussi 533
    Check that suggested route contains   Iso Omena, Espoo
    
-Set route from Matinraitti 4 to Vanha Maantie 6 at rush hour and find eligible route
+Set route from Matinraitti 4 to Vanha Maantie 6 at 8:00 and find eligible route
+   [Tags]   Matinraitti   Vanha Maantie   rush hour   weekday
    Set route from-to   Matinraitti 4   Vanha Maantie 6
    Set clock   8:00
-   Set time to represent departure/arrival   ${ARRIVAL RADIOBUTTON}
+   Select date   2014-10-27
    Submit form and wait results   ${GETROUTEBUTTON}
    Check that suggested route contains   Matinraitti 4, Espoo
    Check correct transportation line   ${TRANSPORTATION XPATH}   Bussi 5
    Check that suggested route contains   Vanha Maantie 6, Espoo
 
-Set route from Matinraitti 4 to Vanha Maantie 6 not at rush hour and find eligible route
+Set route from Matinraitti 4 to Vanha Maantie 6 not at 12:13 and find eligible route
+   [Tags]   Matinraitti   Vanha Maantie   weekday
    Set route from-to   Matinraitti 4   Vanha Maantie 6
-   set clock   12:00
-   Set time to represent departure/arrival   ${DEPARTURE RADIOBUTTON}
+   set clock   12:13
+   Select date   2014-10-27
    Submit form and wait results   ${GETROUTEBUTTON}
    Check that suggested route contains   Matinraitti 4, Espoo
-   Check that suggested route contains   Bussi 132
-   Check that suggested route contains   Bussi 550
+   Check correct transportation line   ${TRANSPORTATION XPATH}   Bussi 132
+   Check correct transportation line   ${SECOND TRANSPORTATION XPATH}   Bussi 550
    Check that suggested route contains   Vanha Maantie 6, Espoo
 
 *** Keywords ***
@@ -73,6 +77,11 @@ Check that suggested route contains
 Check correct transportation line
    [Arguments]   ${element xpath}   ${result}
    Element Should Contain   xpath=${element xpath}   ${result}
+   
+Select date
+   [Arguments]   ${date}
+   Click Element   id=hsl_cal_button
+   Click Element   id=day_cell_${date}
    
    
    
