@@ -24,13 +24,16 @@
 ### Run Robot Framework Tests ###
 
  *	Open cmd and execute your tests:  
-		python -m robot.run <filename>
+		python -m robot.run <filename>  
+		or  
+		pybot <filename>
    
 
 
 References:
 
 Robot framework:
+http://robotframework.org/  
 http://robotframework-seleniumlibrary.googlecode.com/hg/doc/SeleniumLibrary.html?r=2.4  
 http://eficode.fi/en/blog/maintainable-automatic-tests-for-your-web-application/  
 
