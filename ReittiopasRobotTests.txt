@@ -1,52 +1,67 @@
-*** Settings ***
+﻿*** Settings ***
 Library   Selenium2Library
 Library   String
 
 Suite Setup   Open Browser   ${STARTPAGE}   ${BROWSER}
 Test Setup    Go to   ${STARTPAGE}
 Suite Teardown   Close All Browsers
-Documentation    Testing routeplanner Reittiopas.fi 
+Documentation    Testing routeplanner Reittiopas.fi features
 
 *** Variables ***
 ${STARTPAGE}   http://www.reittiopas.fi
 ${BROWSER}   firefox
-${GETROUTEBUTTON}   SearchFormSubmitButton
-${BICYCLEBUTTON}   cyclingTripplannerButton
-${DEPARTURE RADIOBUTTON}   time_method1
-${ARRIVAL RADIOBUTTON}   time_method2
 ${TRANSPORTATION XPATH}   /html/body/div[1]/div[2]/div/div/div[2]/div[1]/div[1]/table/tbody/tr[7]/td[3]/div/table/tbody/tr/td[2]/a
-${SECOND TRANSPORTATION XPATH}   /html/body/div[1]/div[2]/div/div/div[2]/div[1]/div[1]/table/tbody/tr[13]/td[3]/div/table/tbody/tr/td[2]/a
+${WEEKDAY}   2014-10-27
+${FROM}   Puolarintie 2
+${TO}   Saanatunturintie 3
 
 *** Test Cases ***
-Set route from Alaportti 4 to Iso Omena at 12:00 and find eligible route
-   [Tags]   Alaportti   Iso Omena
-   Set route from-to   Alaportti 4   Iso Omena
-   Set clock   12:00
-   Submit form and wait results   ${GETROUTEBUTTON}
-   Check that suggested route contains   Alaportti 4, Espoo
-   Check correct transportation line   ${TRANSPORTATION XPATH}   Bussi 533
-   Check that suggested route contains   Iso Omena, Espoo
+Find route from to now
+   [Tags]   now
+   Set route from-to   ${FROM}   ${TO}
+   Submit route information and wait results
+   Check that result details contains   ${FROM}
+   Check that result details contains   ${TO}
    
-Set route from Matinraitti 4 to Vanha Maantie 6 at 8:00 and find eligible route
-   [Tags]   Matinraitti   Vanha Maantie   rush hour   weekday
+Set route from Alaportti 4 to Iso Omena at 15:00 and find Bussi 533
+   [Tags]   today
+   Set route from-to   Alaportti 4   Iso Omena
+   Set time   15:00
+   Submit route information and wait results
+   Check that result details contains   Alaportti 4, Espoo
+   Verify desired transportation line   Bussi 533
+   Check that result details contains   Iso Omena, Espoo
+   
+Find route from Matinraitti 4 to Kamppi arrive before 15:00 and find Bussi 132
+   [Tags]   today   arrival   seutu
+   Set route from-to   Matinraitti 4   Kamppi
+   Set time   15:00
+   Set time to represent arrival
+   Submit route information and wait results
+   Check that result details contains   Matinraitti 4, Espoo
+   Verify desired transportation line   Bussi 132
+   Check that result details contains   Kamppi, Helsinki
+   
+Set route from Matinraitti 4 to Vanha Maantie 6 at 8:00 and find Bussi 5
+   [Tags]   weekday   rush hour
    Set route from-to   Matinraitti 4   Vanha Maantie 6
-   Set clock   8:00
-   Select date   2014-10-27
-   Submit form and wait results   ${GETROUTEBUTTON}
-   Check that suggested route contains   Matinraitti 4, Espoo
-   Check correct transportation line   ${TRANSPORTATION XPATH}   Bussi 5
-   Check that suggested route contains   Vanha Maantie 6, Espoo
+   Set time   8:00
+   Set date of travel   ${WEEKDAY}
+   Submit route information and wait results
+   Check that result details contains   Matinraitti 4, Espoo
+   Verify desired transportation line   Bussi 5
+   Check that result details contains   Vanha Maantie 6, Espoo
 
-Set route from Matinraitti 4 to Vanha Maantie 6 not at 12:13 and find eligible route
-   [Tags]   Matinraitti   Vanha Maantie   weekday
+Set route from Matinraitti 4 to Vanha Maantie 6 at 12:13 and find Bussi 132 and Bussi 550
+   [Tags]   weekday   Off-peak time
    Set route from-to   Matinraitti 4   Vanha Maantie 6
-   set clock   12:13
-   Select date   2014-10-27
-   Submit form and wait results   ${GETROUTEBUTTON}
-   Check that suggested route contains   Matinraitti 4, Espoo
-   Check correct transportation line   ${TRANSPORTATION XPATH}   Bussi 132
-   Check correct transportation line   ${SECOND TRANSPORTATION XPATH}   Bussi 550
-   Check that suggested route contains   Vanha Maantie 6, Espoo
+   Set time   12:13
+   Set date of travel  ${WEEKDAY}
+   Submit route information and wait results
+   Check that result details contains   Matinraitti 4, Espoo
+   Verify desired transportation line   Bussi 132
+   Check that result details contains   Bussi 550
+   Check that result details contains   Vanha Maantie 6, Espoo
 
 *** Keywords ***
 Set route from-to
@@ -54,39 +69,37 @@ Set route from-to
    Input Text   id=from_in   ${from}
    Input Text   id=to_in     ${to}
    
-Set clock
+Set time
    [Arguments]   ${time}
+   [Documentation]   Time should be given in hh:mm format
    ${hour} =   Fetch From Left   ${time}   :
    ${minute} =   Fetch From Right   ${time}   :
    Input Text      id=hour   ${hour}
    Input Text      name=minute   ${minute}
    
-Set time to represent departure/arrival
-   [Arguments]    ${radiobutton}
-   Click Element   id=${radiobutton}
+Set time to represent arrival
+   Click Element   id=time_method2
    
-Submit form and wait results
-   [Arguments]   ${button}
-   Click Element   id=${button}
-   Wait Until Page Contains Element   id=ResultDetails
-   
-Check that suggested route contains
-   [Arguments]   ${result}
-   Element Should Contain   id=ResultDetails1   ${result}
-   
-Check correct transportation line
-   [Arguments]   ${element xpath}   ${result}
-   Element Should Contain   xpath=${element xpath}   ${result}
-   
-Select date
+Set date of travel
    [Arguments]   ${date}
+   [Documentation]   Date should be given in YYYY-MM-DD format
    Click Element   id=hsl_cal_button
    Click Element   id=day_cell_${date}
    
+Submit route information and wait results
+   Click Element   id=SearchFormSubmitButton
+   Wait Until Page Contains Element   id=ResultDetails
    
+Check that result details contains
+   [Arguments]   ${string}
+   [Documentation]   Checks whole result details for string and matches it with the first matching string
+   Element Should Contain   id=ResultDetails1   ${string}
    
-   
-   
+Verify desired transportation line
+   [Arguments]   ${line}
+   [Documentation]   Verifies the _first_ means of transport
+   Element Should Contain   xpath=${TRANSPORTATION XPATH}   ${line}
+
    
    
    
