@@ -4,7 +4,7 @@
  *	Install Python and edit PATH in Environment Variables
 	 *	Environment Variables are located in Start > Computer > Properties > Advanced System Settings >
 		Environment Variables
-	 *	Select PATH from System Variables and Edit... and add ;&lt;InstallationDir&gt;&lt;ScriptsDir&gt;  
+	 *	Select PATH from System Variables and Edit... and add ;&lt;InstallationDir&gt;;&lt;ScriptsDir&gt;  
 		(e.g. ;C:\Python27;C:\Python27\Scripts) in the variable value field
  *	Install easy_install
 	 *	Download ez_setup.py from: https://bootstrap.pypa.io/ez_setup.py
