@@ -2,7 +2,7 @@
 Matkustajana haluan tietää, millä julkisilla liikennevälineillä pääsen kauppaan.
 
 **** Outi Opiskelija ****
-Opiskelijana tarvitsen reitin kouluun ruuhka-aikaan ja ei ruuhka-aikaan.
+Opiskelijana tarvitsen reitin kouluun ruuhka-aikaan ja hiljaiseen aikaan.
 
 **** Pete Polkupyörä ****
 Polkupyöräilijänä tarvitsen reitin polkupyörällä kodista töihin.

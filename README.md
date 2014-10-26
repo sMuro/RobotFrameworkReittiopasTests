@@ -24,9 +24,9 @@
 ### Run Robot Framework Tests ###
 
  *	Open cmd and execute your tests:  
-		python -m robot.run <filename>  
+		python -m robot.run &lt;filename&gt;  
 		or  
-		pybot <filename>
+		pybot &lt;filename&gt;
    
 
 
